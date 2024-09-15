@@ -1,5 +1,5 @@
 import scapy.all as scapy
-import sys
+import socket
 
 def packet_callback(packet):
     print("\nPacket captured:")
@@ -25,13 +25,22 @@ def craft_and_send_packet(destination_ip):
 
 def perform_ping_scan(target_ip):
     try:
+        # Validate the IP address format
+        socket.inet_pton(socket.AF_INET, target_ip)
         print(f"Performing ping scan to {target_ip}...")
+        
+        # Create an ICMP packet
         packet = scapy.IP(dst=target_ip) / scapy.ICMP()
+        
+        # Send the packet and wait for a response
         response = scapy.sr1(packet, timeout=2)
+        
         if response:
             print(f"Host {target_ip} is up.")
         else:
             print(f"Host {target_ip} is down.")
+    except socket.error:
+        print("Error: Invalid IP address format.")
     except Exception as e:
         print(f"An error occurred during the ping scan: {e}")
 
@@ -88,3 +97,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+#code need pachwork 
