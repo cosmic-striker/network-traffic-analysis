@@ -1,95 +1,154 @@
-Here's a simple README file for your Scapy-based packet manipulation script:
+Certainly! Here's a detailed `README.md` file for the project, explaining the usage, features, and requirements.
 
 ---
 
-# Scapy Interactive Script
+# 📡 Scapy Interactive Network Tool
 
-## Overview
+This interactive Python script allows you to perform various network operations using the **Scapy** library. The tool offers functionality such as packet sniffing, crafting and sending packets, ping scanning, tracerouting, fuzzing, ARP scanning, OS fingerprinting, and more!
 
-This Python script provides various network utilities using the `Scapy` library. It allows users to sniff packets, craft and send packets, perform ping scans, traceroute, and fuzz packets to test network behavior. The script features an interactive menu for easy selection of tasks.
+---
 
 ## Features
 
-1. **Packet Sniffing:** Captures packets on a specified network interface.
-2. **Craft and Send Packet:** Crafts a simple IP and TCP packet and sends it to a destination IP.
-3. **Ping Scan:** Sends an ICMP packet to check if the target IP is reachable.
-4. **Traceroute:** Traces the route to a target IP.
-5. **Packet Fuzzing:** Sends a fuzzed packet to a destination IP for testing network behavior.
+### 🔍 Packet Sniffing
+- Sniff network traffic on a selected interface.
+- Option to filter by protocol (TCP, UDP, ICMP, etc.).
+- Log captured packets to a file with full packet details and timestamps.
 
-## Requirements
+### ✉️ Craft and Send Packets
+- Craft and send custom **TCP** or **UDP** packets to a target IP.
+- Specify destination port for more customization.
 
-- **Python 3.x**: Ensure that Python 3.x is installed on your system.
-- **Scapy**: Install the Scapy library for packet manipulation.
+### 📶 Ping Scanning
+- Perform a ping scan to check if a single host is up.
+- **Continuous Ping Scan** allows you to ping multiple targets in sequence.
 
-You can install Scapy using pip:
+### 🛣️ Traceroute
+- Perform a traceroute to a specific target IP to trace network routes.
 
-```bash
-pip install scapy
-```
+### 🤖 Fuzzing
+- Fuzz TCP packets and send them to a target IP to test for vulnerabilities.
 
-### Additional Dependencies
+### 🌐 ARP Scanning
+- Perform an ARP scan on a local network range to discover devices.
 
-The script also uses the `socket` module, which comes pre-installed with Python.
-
-## Usage
-
-1. **Clone the repository or download the script:**
-
-```bash
-git clone https://github.com/cosmic-striker/scapy-interactive-script.git
-cd scapy-interactive-script
-```
-
-2. **Run the script:**
-
-Ensure you run the script with elevated privileges, as packet sniffing and crafting require root/admin access.
-
-```bash
-sudo python3 scapy_script.py
-```
-
-3. **Interactive Menu:**
-
-You will be prompted to select an option from the following:
-
-- `1` : Sniff packets on a specific interface (e.g., `eth0`, `wlan0`).
-- `2` : Craft and send a packet to a specified target IP address.
-- `3` : Perform a ping scan on a specified target IP address.
-- `4` : Perform a traceroute to a specified target IP address.
-- `5` : Fuzz a packet and send it to a target IP address.
-- `6` : Exit the script.
-
-## Example
-
-1. **Packet Sniffing:**
-
-```bash
-Enter network interface (e.g., eth0): eth0
-```
-
-2. **Craft and Send a Packet:**
-
-```bash
-Enter target IP address: 192.168.1.1
-```
-
-3. **Ping Scan:**
-
-```bash
-Enter target IP address: 192.168.1.1
-```
-
-## Error Handling
-
-The script includes error handling for:
-- Invalid IP address formats.
-- Permission issues when running packet sniffing or crafting tasks without proper privileges.
-- General exceptions during network operations.
-
-## Note
-
-Some of the script's functionalities may require administrative privileges to execute properly. Make sure to run the script with elevated privileges (e.g., using `sudo` on Linux or running as Administrator on Windows).
+### 🖥️ OS Fingerprinting
+- Basic OS fingerprinting based on TTL values, detecting if the target is likely **Linux/Unix** or **Windows**.
 
 ---
 
-This README provides clear instructions and context for users to run and understand the capabilities of the script.
+## Requirements
+
+The script depends on the following Python libraries:
+- **scapy**
+- **netifaces**
+
+### Installation
+You can install the required libraries via pip:
+
+```bash
+pip install scapy netifaces
+```
+
+---
+
+## Usage
+
+Run the script using Python 3:
+
+```bash
+python scapy_interactive_tool.py
+```
+
+Once the script starts, you will be prompted to choose from a set of options:
+
+### Main Menu Options
+
+1. **Sniff Packets**
+   - Choose a network interface.
+   - Optionally specify a protocol filter (e.g., `icmp`, `tcp`, `udp`).
+   - Set a timeout for how long you want to sniff.
+   - Optionally log captured packets to a file.
+
+2. **Craft and Send a Packet**
+   - Enter a target IP.
+   - Choose between **TCP** or **UDP**.
+   - Specify the destination port (default is 80).
+
+3. **Perform a Ping Scan**
+   - Enter a target IP address to check if the host is reachable.
+
+4. **Perform a Traceroute**
+   - Enter a target IP to trace the network route to the host.
+
+5. **Fuzz a Packet**
+   - Enter a target IP to fuzz and send a randomized TCP packet to the target's port 80.
+
+6. **Perform an ARP Scan**
+   - Enter a network range (e.g., `192.168.1.0/24`) to discover live hosts on the network.
+
+7. **OS Fingerprinting**
+   - Enter a target IP to attempt basic OS detection based on the TTL of the response.
+
+8. **Continuous Ping Scan**
+   - Enter a comma-separated list of IPs to perform ping scanning on multiple targets in sequence.
+
+9. **Exit**
+   - Exits the script.
+
+---
+
+## Example
+
+### Sniffing Packets
+
+```bash
+Select an option:
+1. Sniff packets
+```
+
+- **Interface**: `eth0`
+- **Filter**: `icmp`
+- **Duration**: 60 seconds
+- **Log File**: `/path/to/log.txt`
+
+The script will sniff ICMP packets on interface `eth0` for 60 seconds and log them to the specified file.
+
+---
+
+## Notes
+
+- Some actions (like packet sniffing and sending) require elevated privileges. If you encounter a permission error, try running the script with `sudo`:
+  
+  ```bash
+  sudo python scapy_interactive_tool.py
+  ```
+
+- Always ensure you have permission to perform network operations on your network.
+
+---
+
+## Future Enhancements
+
+Planned features:
+- Add support for DNS queries and responses.
+- Implement real-time graphical plotting for network response times.
+- Integrate multi-threading for faster ARP scans on large networks.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for more information.
+
+---
+
+### Author
+
+Developed by Python Copilot 🔨🤖🔧
+
+Feel free to contribute or suggest improvements!
+
+---
+
+This `README.md` provides an overview of the tool, its functionality, and usage instructions. Let me know if you want to add or change anything! 😊
