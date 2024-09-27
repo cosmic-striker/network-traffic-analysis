@@ -144,7 +144,3 @@ This project is licensed under the MIT License. See the LICENSE file for more in
 Developed by Python Copilot 🔨🤖🔧
 
 Feel free to contribute or suggest improvements!
-
----
-
-This `README.md` provides an overview of the tool, its functionality, and usage instructions. Let me know if you want to add or change anything! 😊
