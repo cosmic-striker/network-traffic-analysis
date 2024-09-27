@@ -1,7 +1,3 @@
-Certainly! Here's a detailed `README.md` file for the project, explaining the usage, features, and requirements.
-
----
-
 # 📡 Scapy Interactive Network Tool
 
 This interactive Python script allows you to perform various network operations using the **Scapy** library. The tool offers functionality such as packet sniffing, crafting and sending packets, ping scanning, tracerouting, fuzzing, ARP scanning, OS fingerprinting, and more!
